@@ -12,6 +12,8 @@ public class FileTransferRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("file:/home/luisp/Documents/IntegracionSistemas/camel-lab/input?noop=true")
                 .log("Procesando archivo: ${file:name}")
+                .convertBodyTo(String.class)
+                .transform().simple("${body.toUpperCase()}")
                 .to("file:/home/luisp/Documents/IntegracionSistemas/camel-lab/output");
     }
 }
