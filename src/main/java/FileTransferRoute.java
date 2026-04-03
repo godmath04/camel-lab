@@ -15,5 +15,9 @@ public class FileTransferRoute extends RouteBuilder {
                 .convertBodyTo(String.class)
                 .transform().simple("${body.toUpperCase()}")
                 .to("file:/home/luisp/Documents/IntegracionSistemas/camel-lab/output");
+
+        from("file:/home/luisp/Documents/IntegracionSistemas/camel-lab/output")
+            .log("Archivando archivo: ${file:name}")
+            .to("file:/home/luisp/Documents/IntegracionSistemas/camel-lab/archived");
     }
 }
